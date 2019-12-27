@@ -4,6 +4,8 @@ $(document).ready(function () {
       { securityToken: '99800b85d3383e3a2fb45eb7d0066a4879a9dad0' },
       function (data, status) {
         $(function () {
+          $('#profiles_table_body').empty()
+          $('#cookies_table_body').empty()
 
           const convert2Date = function (timestamp) {
             const date    = new Date(timestamp * 1000)
@@ -23,7 +25,7 @@ $(document).ready(function () {
           $.each(profileData, function (i, item) {
             profileHTML += '<tr><td>' + convert2Date(item.LastModifiedTimestamp) + '</td><td>' + item.queueUrl + '</td><td style="text-align:center">' + item.ApproximateNumberOfMessages + '</td></tr>'
           })
-          $('#profiles_table').append(profileHTML)
+          $('#profiles_table_body').append(profileHTML)
 
           $.each(cookieData, function (i, item) {
             if (item.queueUrl.indexOf('stale') > 0 && item.ApproximateNumberOfMessages > 0){
@@ -32,14 +34,7 @@ $(document).ready(function () {
               cookieHTML += '<tr><td>' + convert2Date(item.LastModifiedTimestamp) + '</td><td>' + item.queueUrl + '</td><td style="text-align:center">' + item.ApproximateNumberOfMessages + '</td></tr>'
             }
           })
-          $('#cookies_table').append(cookieHTML)
-
-          // $('#cookies_table td').each(function () {
-          //   const num = parseFloat($(this).text())
-          //   if ($(this).text().indexOf('stale') && num > 0) {
-          //     $(this).css('color', 'Red')
-          //   }
-          // })
+          $('#cookies_table_body').append(cookieHTML)
         })
       })
   })
