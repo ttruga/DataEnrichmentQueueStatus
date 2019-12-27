@@ -26,31 +26,32 @@
 
 <!-- Add your site or application content here -->
 
-<button class="button-primary">Update</button>
+<div class="container">
+    <button class="button-primary">Update</button>
 
+    <table id="profiles_table" class="u-full-width">
+        <caption>Profiles</caption>
+        <tr>
+            <th>Timestamp</th>
+            <th>Name</th>
+            <th>Messages</th>
+        </tr>
+        <tbody id="profiles_table_body">
+        </tbody>
+    </table>
+    <br/>
 
-<table id="profiles_table" class="u-full-width">
-    <caption>Profiles</caption>
-    <tr>
-        <th>Timestamp</th>
-        <th>Name</th>
-        <th>Messages</th>
-    </tr>
-    <tbody id="profiles_table_body">
-    </tbody>
-</table>
-<br/>
-
-<table id="cookies_table" class="u-full-width">
-    <caption>Cookies</caption>
-    <tr>
-        <th>Timestamp</th>
-        <th>Name</th>
-        <th>Messages</th>
-    </tr>
-    <tbody id="cookies_table_body">
-    </tbody>
-</table>
+    <table id="cookies_table" class="u-full-width">
+        <caption>Cookies</caption>
+        <tr>
+            <th>Timestamp</th>
+            <th>Name</th>
+            <th>Messages</th>
+        </tr>
+        <tbody id="cookies_table_body">
+        </tbody>
+    </table>
+</div>
 
 <script src="js/vendor/modernizr-3.8.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -66,5 +67,4 @@
 <!--  </script>-->
 <!--  <script src="https://www.google-analytics.com/analytics.js" async></script>-->
 </body>
-
 </html>
