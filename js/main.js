@@ -6,26 +6,37 @@ $(document).ready(function () {
         $(function () {
           $('#profiles_table_body').empty()
           $('#cookies_table_body').empty()
+          $('#webhook_table_body').empty()
 
           const convert2Date = function (timestamp) {
             const date    = new Date(timestamp * 1000)
             const hours   = date.getHours()
             const minutes = '0' + date.getMinutes()
             const seconds = '0' + date.getSeconds()
-            return hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2)
+            const day     = date.getUTCDate()
+            const month   = date.getUTCMonth() + 1
+            const year    = date.getUTCFullYear()
+            
+            return hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2) + ' ' + day + '/' + month + '/' + year 
           }
 
           let profileHTML   = ''
           let cookieHTML    = ''
+          let webhookHTML   = ''
+          
           const profileData = data.profileQueueAttr
+          
           const cookieData  = data.cookieQueueAttr.sort(function (a, b) {
             return a.queueUrl.indexOf('stale')
           })
-
+          
+          const webhookData = data.webhookQueueAttr
+          
           $.each(profileData, function (i, item) {
             profileHTML += '<tr><td>' + convert2Date(item.LastModifiedTimestamp) + '</td><td>' + item.queueUrl + '</td><td style="text-align:center">' + item.ApproximateNumberOfMessages + '</td></tr>'
           })
           $('#profiles_table_body').append(profileHTML)
+
 
           $.each(cookieData, function (i, item) {
             if (item.queueUrl.indexOf('stale') > 0 && item.ApproximateNumberOfMessages > 0){
@@ -35,6 +46,13 @@ $(document).ready(function () {
             }
           })
           $('#cookies_table_body').append(cookieHTML)
+          
+          
+          $.each(webhookData, function (i, item) {
+            webhookHTML += '<tr><td>' + convert2Date(item.LastModifiedTimestamp) + '</td><td>' + item.queueUrl + '</td><td style="text-align:center">' + item.ApproximateNumberOfMessages + '</td></tr>'
+          })
+          $('#webhook_table_body').append(webhookHTML)
+          
         })
       })
   })
